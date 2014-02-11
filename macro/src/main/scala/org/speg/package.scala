@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-object Main extends App {
-  import Macros._
+package org.speg
 
-  printCustom("it works!")
+package object support {
+  private[speg] def `n/a` = throw new IllegalStateException
 }

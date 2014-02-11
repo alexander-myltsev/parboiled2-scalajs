@@ -14,17 +14,28 @@
  * limitations under the License.
  */
 
-import scala.language.experimental.macros
-import scala.reflect.macros.Context
+package org.speg.examples
 
-object Macros {
-  def printCustom(s: String): Unit = macro printCustomImpl
+import org.speg._
+import scala.annotation.tailrec
 
-  def printCustomImpl(c: Context)(s: c.Expr[String]): c.Expr[Unit] = {
-    import c.universe._
+object SampleParser extends App {
+  repl()
 
-    c.Expr[Unit](q"""
-      println("You entered: " + $s)
-    """)
+  @tailrec
+  def repl(): Unit = {
+    print("---\nEnter expression for sample-parser > ")
+    Console.out.flush()
+    readLine() match {
+      case "" =>
+      case line =>
+        val parser = new SampleParser(line)
+        println(s"Expression matched is '${parser.InputRule.matched}'")
+        repl()
+    }
   }
+}
+
+class SampleParser(val input: ParserInput) extends Parser {
+  def InputRule = rule { "abc" }
 }
