@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PEG-parser example as Scala.js application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>PEG-parser example as Scala.js application - development version</h1>
+
+<p>Enter a string, then press <i>parse</i></p>
+
+<script type="text/javascript" src="./target/scala-2.11/main-extdeps.js"></script>
+<script type="text/javascript" src="./target/scala-2.11/main-intdeps.js"></script>
+<script type="text/javascript" src="./target/scala-2.11/main.js"></script>
+
+<script type="text/javascript">
+    function aButtonClick() {
+        var str        = document.getElementById('aText').value;
+        var matched    = SampleParser().matchStr(str)
+        var playground = document.getElementById('playground');
+
+        playground.innerHTML = "input string '" + str + "' match is '" + matched + "'";
+    }
+</script>
+
+
+<input type="text"
+       id="aText"
+       value="abc" />
+
+<input type="button"
+       value="parse"
+       id="aButton"
+       onclick="aButtonClick();" />
+
+<div id="playground"></div>
+
+</body>
+</html>

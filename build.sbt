@@ -1,5 +1,7 @@
 import sbt._
 import Keys._
+import scala.scalajs.sbtplugin.ScalaJSPlugin._
+import ScalaJSKeys._
 
 val commonSettings = Seq(
   version := "0.1",
@@ -33,11 +35,13 @@ val specs2       = "org.specs2"      %% "specs2-core"      % "2.3.11"   % "test"
 
 lazy val main = Project("main", file("."))
   .dependsOn(macroSub)
+  .settings(scalaJSSettings: _*)
   .settings(commonSettings: _*)
   .settings(
     libraryDependencies ++= Seq(scalaReflect, shapeless, specs2))
 
 lazy val macroSub = Project("macro", file("macro"))
+  .settings(scalaJSSettings: _*)
   .settings(commonSettings: _*)
   .settings(
     libraryDependencies ++= Seq(scalaReflect, shapeless, specs2))
