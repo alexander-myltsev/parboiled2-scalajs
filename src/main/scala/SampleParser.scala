@@ -2,7 +2,7 @@ import scala.scalajs.js.annotation.JSExport
 import org.speg._
 
 class SampleParser(val input: ParserInput) extends Parser {
-  def InputRule = rule { "abc" }
+  def InputRule = rule { "ab" ~ ("c" | "d") }
 }
 
 @JSExport

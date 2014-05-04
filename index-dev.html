@@ -20,7 +20,7 @@
         var matched    = SampleParser().matchStr(str)
         var playground = document.getElementById('playground');
 
-        playground.innerHTML = "input string '" + str + "' match is '" + matched + "'";
+        playground.innerHTML = "input string '" + str + "' is " + (matched && "matched" || "unmatched");
     }
 </script>
 
