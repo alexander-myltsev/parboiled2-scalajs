@@ -3,7 +3,7 @@ import Keys._
 
 val commonSettings = Seq(
   version := "0.1",
-  scalaVersion := "2.10.3",
+  scalaVersion := "2.11.0",
   organization := "org.speg",
   homepage := None,
   description := "Staging experiments with PEG parsers gererator",
@@ -27,9 +27,9 @@ val commonSettings = Seq(
   resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"), Resolver.sonatypeRepo("releases")),
   shellPrompt := { s => Project.extract(s).currentProject.id + " > " })
 
-val scalaReflect = "org.scala-lang"  %  "scala-reflect"    % "2.10.3"   % "compile"
-val shapeless    = "com.chuusai"     %  "shapeless_2.10.3" % "2.0.0-M1" % "compile"
-val specs2       = "org.specs2"      %% "specs2-core"      % "2.3.6"    % "test"
+val scalaReflect = "org.scala-lang"  %  "scala-reflect"    % "2.11.0"   % "provided"
+val shapeless    = "com.chuusai"     %% "shapeless"        % "2.0.0"    % "compile"
+val specs2       = "org.specs2"      %% "specs2-core"      % "2.3.11"   % "test"
 
 lazy val main = Project("main", file("."))
   .dependsOn(macroSub)
@@ -40,5 +40,4 @@ lazy val main = Project("main", file("."))
 lazy val macroSub = Project("macro", file("macro"))
   .settings(commonSettings: _*)
   .settings(
-    addCompilerPlugin("org.scala-lang.plugins" % "macro-paradise" % "2.0.0-SNAPSHOT" cross CrossVersion.full),
     libraryDependencies ++= Seq(scalaReflect, shapeless, specs2))
